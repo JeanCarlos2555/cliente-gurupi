@@ -1,0 +1,13 @@
+services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: ${VITE_NAME:-gurupi_portal_frontend}
+    restart: always
+    env_file:
+      - .env
+    ports:
+      - "${VITE_PORT:-4180}:80"
+    environment:
+      TZ: "${TZ:-America/Fortaleza}"

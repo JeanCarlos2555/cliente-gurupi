@@ -1,0 +1,16 @@
+services:
+  # Backend porteiro do portal Gurupi (Node/Express, stateless — sem banco)
+  gurupi:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: ${APP_NAME:-gurupi_portal_backend}
+    env_file:
+      - .env
+    ports:
+      - "${APP_PORT:-3030}:${APP_PORT:-3030}"
+    environment:
+      TZ: "${TZ:-America/Fortaleza}"
+      # O app lê process.env.PORT; alinhamos com a porta publicada.
+      PORT: "${APP_PORT:-3030}"
+    restart: always
