@@ -83,9 +83,9 @@ npm run dev                # http://localhost:5173
 
 ## Como rodar (Docker)
 
-Cada app é **independente**, com seu próprio `Dockerfile` e `docker-compose.yml` (mesmo
-padrão dos projetos iplan). Cada container publica sua porta e o **reverse proxy do
-servidor** roteia os domínios (portal + subdomínio de API). O frontend e o backend ficam
+Cada app é **independente**, com seu próprio `Dockerfile` e `docker-compose.yml`. Cada
+container publica sua porta e o **reverse proxy do servidor** roteia os domínios (portal +
+subdomínio de API). O frontend e o backend ficam
 em **domínios separados** (subdomínio de API), e o frontend chama a API por **URL absoluta**.
 
 ```
