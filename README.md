@@ -102,12 +102,12 @@ docker compose up -d --build
 ```
 
 ### Frontend
-O build do React é feito **fora do Docker** (CI/máquina) gerando o `dist/`; a imagem só
-serve os arquivos via Nginx e injeta o `VITE_API_URL` em runtime (`docker/env.sh`).
+O build do React acontece **dentro do Dockerfile** (multi-stage): uma etapa Node compila o
+`dist/` e a etapa final (Nginx) só serve. **Não precisa de `npm` no servidor**, só Docker.
+O `VITE_API_URL` é injetado em runtime pelo `docker/env.sh` (placeholder `__VITE_API_URL__`).
 ```bash
 cd frontend
 cp .env-example .env        # defina VITE_API_URL (subdomínio de API + /api), VITE_PORT, VITE_NAME
-npm install && npm run build # gera dist/ usando .env.production (placeholder __VITE_API_URL__)
 docker compose up -d --build
 ```
 

@@ -1,0 +1,9 @@
+# Dependencias e build sao refeitos dentro do Dockerfile
+node_modules
+dist
+
+# Runtime / git (o .env.production e necessario para o build, por isso NAO entra aqui)
+.env
+.git
+.gitignore
+npm-debug.log
