@@ -7,11 +7,17 @@ const CustomerToken = require("../../classes/Auth/CustomerToken");
 
 const COOKIE_NAME = process.env.SESSION_COOKIE_NAME || "gt_session";
 
+// Opções do cookie de sessão.
+// Portal e API ficam em subdomínios diferentes (cross-site), então em produção
+// o cookie precisa de SameSite=None + Secure para ser reenviado pelo navegador.
+// SameSite=None EXIGE Secure; por isso forçamos secure quando sameSite=none.
 function cookieOptions() {
+  const sameSite = (process.env.COOKIE_SAMESITE || "lax").toLowerCase();
+  const secure = process.env.COOKIE_SECURE == "true" || sameSite === "none";
   return {
     httpOnly: true,
-    secure: process.env.COOKIE_SECURE == "true",
-    sameSite: "lax",
+    secure,
+    sameSite,
     maxAge: 24 * 60 * 60 * 1000, // 1 dia
     path: "/",
   };
@@ -118,7 +124,9 @@ router.post("/verify-otp", async (req, res) => {
 
 // POST /api/auth/logout
 router.post("/logout", (req, res) => {
-  res.clearCookie(COOKIE_NAME, { path: "/" });
+  // Limpa com os mesmos atributos do cookie de sessão (senão o navegador não casa).
+  const { httpOnly, secure, sameSite, path } = cookieOptions();
+  res.clearCookie(COOKIE_NAME, { httpOnly, secure, sameSite, path });
   return res.status(200).json({ ok: true });
 });
 
