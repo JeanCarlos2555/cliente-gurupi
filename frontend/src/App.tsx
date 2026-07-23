@@ -7,6 +7,7 @@ import { Faturas } from "./pages/Faturas";
 import { Consumo } from "./pages/Consumo";
 import { Perfil } from "./pages/Perfil";
 import { Spinner } from "./components/Spinner";
+import { InstallPWA } from "./components/InstallPWA";
 
 function Protected({ children }: { children: React.ReactNode }) {
   const { customer, loading } = useAuth();
@@ -74,6 +75,7 @@ export default function App() {
             />
             <Route path="*" element={<Navigate to="/" replace />} />
           </Routes>
+          <InstallPWA />
         </BrowserRouter>
       </AuthProvider>
     </ToastProvider>

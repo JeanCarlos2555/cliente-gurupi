@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import { Logo } from "./Logo";
 
-const WHATSAPP_URL = "https://wa.me/558694833528";
+const WHATSAPP_URL = "https://wa.me/558688168574";
 const EMAIL = "gurupitelecomltda@gmail.com";
 
 // Rodapé com os dados de contato da Gurupi Telecom.
@@ -26,10 +26,7 @@ export function Footer() {
   return (
     <>
       {/* Rodapé completo: aparece no fim real da página. */}
-      <footer
-        ref={fullRef}
-        className="mt-8 border-t border-slate-100 bg-white"
-      >
+      <footer ref={fullRef} className="mt-8 border-t border-slate-100 bg-white">
         <div className="mx-auto grid max-w-5xl gap-8 px-4 py-8 text-center sm:grid-cols-2 sm:py-10 sm:text-left lg:grid-cols-4">
           <div className="flex flex-col items-center sm:items-start">
             <Logo className="h-10" />
@@ -61,7 +58,7 @@ export function Footer() {
               rel="noreferrer"
               className="mt-2 block text-sm text-slate-500 transition hover:text-gurupi-600"
             >
-              (86) 9 9483-3528
+              (86) 9 8816-8574
             </a>
           </div>
 
